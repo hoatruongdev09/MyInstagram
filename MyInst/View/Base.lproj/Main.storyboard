@@ -372,11 +372,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKZ-vY-sHw">
-                                <rect key="frame" x="86" y="445" width="203" height="35"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                <state key="normal" title="Sign Up with Facebook"/>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UWs-Xz-eb3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -423,7 +418,6 @@
                         <constraints>
                             <constraint firstItem="UWs-Xz-eb3" firstAttribute="leading" secondItem="UAB-Qe-g1S" secondAttribute="leading" id="1c6-v6-pHa"/>
                             <constraint firstItem="c0F-yo-YF4" firstAttribute="top" secondItem="yga-Md-uFw" secondAttribute="bottom" constant="20" id="5yB-Yc-mt9"/>
-                            <constraint firstItem="dKZ-vY-sHw" firstAttribute="centerX" secondItem="HQS-bS-V2x" secondAttribute="centerX" id="7ea-N8-HRA"/>
                             <constraint firstItem="c0F-yo-YF4" firstAttribute="centerX" secondItem="HQS-bS-V2x" secondAttribute="centerX" id="BU5-Fl-k1A"/>
                             <constraint firstItem="Bx4-gE-MxU" firstAttribute="width" secondItem="HQS-bS-V2x" secondAttribute="width" multiplier="0.6" id="Bew-cS-LDZ"/>
                             <constraint firstItem="Snx-sQ-d24" firstAttribute="centerX" secondItem="HQS-bS-V2x" secondAttribute="centerX" id="CUY-IN-8VF"/>
@@ -431,7 +425,6 @@
                             <constraint firstItem="yga-Md-uFw" firstAttribute="top" secondItem="Bx4-gE-MxU" secondAttribute="bottom" constant="10" id="M2M-Ig-BRr"/>
                             <constraint firstItem="UWs-Xz-eb3" firstAttribute="height" secondItem="HQS-bS-V2x" secondAttribute="height" multiplier="0.4" id="U4B-7W-bEY"/>
                             <constraint firstItem="UWs-Xz-eb3" firstAttribute="top" secondItem="HQS-bS-V2x" secondAttribute="top" id="V8Y-0Z-KKt"/>
-                            <constraint firstItem="dKZ-vY-sHw" firstAttribute="top" secondItem="c0F-yo-YF4" secondAttribute="bottom" constant="20" id="Wto-PT-Jcy"/>
                             <constraint firstItem="yga-Md-uFw" firstAttribute="leading" secondItem="UAB-Qe-g1S" secondAttribute="leading" constant="30" id="cNb-eD-87b"/>
                             <constraint firstItem="UAB-Qe-g1S" firstAttribute="trailing" secondItem="UWs-Xz-eb3" secondAttribute="trailing" id="gkf-dC-kMp"/>
                             <constraint firstItem="yga-Md-uFw" firstAttribute="centerX" secondItem="HQS-bS-V2x" secondAttribute="centerX" id="gwH-w5-4ys"/>
@@ -442,6 +435,7 @@
                         <viewLayoutGuide key="safeArea" id="UAB-Qe-g1S"/>
                     </view>
                     <connections>
+                        <outlet property="buttonSignIn" destination="Bx4-gE-MxU" id="aS9-EU-ZeZ"/>
                         <outlet property="imageSlide" destination="UWs-Xz-eb3" id="6xe-oH-dhG"/>
                         <outlet property="orLabel" destination="c0F-yo-YF4" id="ge7-aj-01H"/>
                         <outlet property="pageView" destination="Snx-sQ-d24" id="G7d-ex-HvI"/>

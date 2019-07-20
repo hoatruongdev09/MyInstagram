@@ -14,6 +14,10 @@ pod 'Firebase/Storage'
 pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
 
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
+
 pod 'SwiftyJSON'
 
 end

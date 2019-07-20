@@ -10,13 +10,16 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-
+import FacebookCore
+import FacebookLogin
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var imageSlide: UICollectionView!
     @IBOutlet weak var pageView: UIPageControl!
     @IBOutlet weak var orLabel: UILabel!
+    @IBOutlet weak var buttonSignIn: UIButton!
     
     var imageSource = [UIImage(named: "1"),UIImage(named: "2"),UIImage(named: "3"),UIImage(named: "4"),UIImage(named: "5"),UIImage(named: "6")]
     
@@ -37,12 +40,15 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
             
         }
         
-        //let signInWithFacebook = FBLoginButton()
-//        NSLayoutConstraint.activate([
-//            NSLayoutConstraint(item: signInWithFacebook, attribute: .top, relatedBy: .equal, toItem: orLabel, attribute: .bottom, multiplier: 1, constant: 20),
-//            NSLayoutConstraint(item: signInWithFacebook, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0),
-//            NSLayoutConstraint(item: signInWithFacebook, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.6, constant: view.bounds.width)
-//            ])
+        let signInWithFacebook = FBLoginButton()
+        signInWithFacebook.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(signInWithFacebook)
+        NSLayoutConstraint.activate([
+            signInWithFacebook.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 30),
+            signInWithFacebook.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            signInWithFacebook.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6),
+            signInWithFacebook.heightAnchor.constraint(equalToConstant: 40)
+            ])
         
     }
     override func viewWillAppear(_ animated: Bool) {
