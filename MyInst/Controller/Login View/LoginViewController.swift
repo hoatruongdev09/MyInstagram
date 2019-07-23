@@ -14,7 +14,9 @@ import FacebookCore
 import FacebookLogin
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class LoginViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, LoginButtonDelegate {
+    
+    
     
     @IBOutlet weak var imageSlide: UICollectionView!
     @IBOutlet weak var pageView: UIPageControl!
@@ -26,6 +28,9 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
     
     var timer = Timer()
     var counter = 0
+    
+    let signInWithFacebook = FBLoginButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -40,15 +45,8 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
             
         }
         
-        let signInWithFacebook = FBLoginButton()
-        signInWithFacebook.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(signInWithFacebook)
-        NSLayoutConstraint.activate([
-            signInWithFacebook.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 30),
-            signInWithFacebook.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
-            signInWithFacebook.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6),
-            signInWithFacebook.heightAnchor.constraint(equalToConstant: 40)
-            ])
+        signInWithFacebookInit()
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +84,61 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
         return cell
     }
     
+    func signInWithFacebookInit() {
+        
+        signInWithFacebook.delegate = self
+        
+        signInWithFacebook.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(signInWithFacebook)
+        NSLayoutConstraint.activate([
+            signInWithFacebook.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 30),
+            signInWithFacebook.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            signInWithFacebook.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6),
+            signInWithFacebook.heightAnchor.constraint(equalToConstant: 40)
+            ])
+    }
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
+            print("login facebook error: \(error.localizedDescription)")
+            return
+        }
+        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+        
+        Auth.auth().signIn(with: credential) { (result, error) in
+            if let error = error {
+                print("login facebook error firebase: \(error.localizedDescription)")
+                return
+            }
+            
+            if let authedUser = result?.user {
+                self.checkIfUserExisted(authedUser.uid, completion: { (existed) in
+                    if existed {
+                        print("user existed")
+                    } else {
+                        var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? "", email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
+                        user.save()
+                    }
+                })
+                
+            }
+            
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabView") {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        if Auth.auth().currentUser != nil {
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                print("sign out facebook error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     @objc private func changeImage() {
         counter += 1
         if counter >= imageSource.count {
@@ -100,10 +153,30 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
             if let err = error {
                 print("anonym auth error: \(err.localizedDescription)")
             }else{
+                let authedUser = Auth.auth().currentUser
+                if let authedUser = authedUser {
+                    self.checkIfUserExisted(authedUser.uid, completion: { (existed) in
+                        if existed {
+                            print("user existed")
+                        } else {
+                            var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? "", email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
+                            user.save()
+                        }
+                    })
+                    
+                }
+                
                 if let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabView") {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
+        }
+    }
+    
+    func checkIfUserExisted (_ uid: String, completion: @escaping (_ existed: Bool) -> Void) {
+        let ref = Database.database().reference().child("user")
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            completion(snapshot.hasChild(uid))
         }
     }
 }

@@ -16,10 +16,10 @@ class Post {
     var userUID: String!
     var userName: String!
     var imageDownloadURL: String!
-    
+    var postID: String! = ""
     private var image: UIImage!
     
-    init(userUID: String, userName: String, caption: String, imageDownloadURL: String) {
+    init(userUID: String, userName: String, caption: String, imageDownloadURL: String, postID: String) {
         self.userUID = userUID
         self.userName = userName
         self.caption = caption
@@ -34,6 +34,10 @@ class Post {
         self.caption = json["caption"].stringValue
         self.imageDownloadURL = json["imageDownloadURL"].stringValue
         self.userUID = json["userUID"].stringValue
+        
+        self.postID = snapshot.key
+        
+        //print("\(postID!) | \(userName!) | \(caption!) | \(imageDownloadURL!) | \(userUID!)")
     }
     
     func setImage(image: UIImage) {
@@ -44,6 +48,8 @@ class Post {
         
         let newPostRef = Database.database().reference().child("post").childByAutoId()
         let newPostKey = newPostRef.key
+        postID = newPostKey
+        
         
         
         uploadImage(userrID: userUID, keyID: newPostKey!) { (downloadURl) in
@@ -60,7 +66,7 @@ class Post {
     
     func uploadImage(userrID: String, keyID: String,completion: @escaping (_ imageDownloadUrl: String) -> Void) {
         let imageStorageRef = Storage.storage().reference().child("images").child(userrID)
-        if let fileData = image.jpegData(compressionQuality: 0.8) {
+        if let fileData = image.jpegData(compressionQuality: 0.7) {
             let newImageRef = imageStorageRef.child(keyID)
             
             let uploadTask = newImageRef.putData(fileData, metadata: nil) { (metaData, error) in

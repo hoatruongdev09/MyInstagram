@@ -26,10 +26,16 @@ class UploadPhotoViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonShareThisPhoto(_ sender: Any) {
-        let currentUser = Auth.auth().currentUser
-        let post = Post(userUID: currentUser?.uid ?? "", userName: currentUser?.displayName ?? "", caption: textStatus.text ?? "", imageDownloadURL: "")
-        post.setImage(image: imagePost.image!)
-        post.save()
+        
+        if let currentUser = Auth.auth().currentUser {
+            let post: Post = Post(userUID: currentUser.uid, userName: currentUser.displayName ?? "Anonymouse", caption: textStatus.text!, imageDownloadURL: "", postID: "")
+            post.setImage(image: imagePost.image!)
+            post.save()
+            
+            let cmt: Comment = Comment(postID: post.postID!, userID: currentUser.uid, message: post.caption!)
+            cmt.save()
+        }
+       
         if let vc: UIViewController = self.storyboard?.instantiateViewController(withIdentifier: "tabView") {
             self.navigationController?.pushViewController(vc, animated: true)
         }
