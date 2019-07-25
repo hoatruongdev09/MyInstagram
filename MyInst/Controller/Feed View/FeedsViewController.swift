@@ -26,20 +26,25 @@ class FeedsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         loadData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: PostViewCell = tableView.dequeueReusableCell(withIdentifier: "postCell") as! PostViewCell
+        let cell: PostViewCell = tableView.dequeueReusableCell(withIdentifier: "postCell") as! PostViewCell
         
         let post = posts[indexPath.row]
         cell.post = post
-        cell.updateUI()
+        cell.post.imageSetEvent = {()-> () in cell.updateUI()}
+        //cell.updateUI()
         
         cell.onCommentTap = { () -> () in
-            if let cmView: CommentViewController = self.storyboard?.instantiateViewController(withIdentifier: "commentView") as! CommentViewController {
+            if let cmView: CommentViewController = self.storyboard?.instantiateViewController(withIdentifier: "commentView") as? CommentViewController {
                 cmView.postID = post.postID
                 self.present(cmView, animated: true, completion: nil)
             }
@@ -53,7 +58,7 @@ class FeedsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func loadData() {
         let ref = Database.database().reference().child("post")
         ref.observe(.childAdded) { (snapshot) in
-            print("post: \(snapshot)")
+            //print("post: \(snapshot)")
             DispatchQueue.main.async {
                 let newPost = Post(snapshot: snapshot)
                 self.posts.insert(newPost, at: 0)
@@ -62,11 +67,12 @@ class FeedsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.feedTableView.insertRows(at: [indexPath], with: .top)
             }
         }
+//        self.feedTableView.reloadData()
     }
     
 
     @IBAction func buttonCamera(_ sender: Any) {
-        if let vc: ChoosePhotoViewController = self.storyboard?.instantiateViewController(withIdentifier: "choosePhotoViewController") as! ChoosePhotoViewController {
+        if let vc: ChoosePhotoViewController = self.storyboard?.instantiateViewController(withIdentifier: "choosePhotoViewController") as? ChoosePhotoViewController {
             vc.chooseFromCamera = true
             
             self.navigationController?.pushViewController(vc, animated: true)

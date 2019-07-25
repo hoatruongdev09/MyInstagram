@@ -17,6 +17,8 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var viewInput: UIView!
     
+    @IBOutlet weak var inputViewBottonConstraint: NSLayoutConstraint!
+    
     var postID: String! = ""
     var comments: [Comment] = []
     var user: User! = nil
@@ -30,8 +32,6 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableOfComment.delegate = self
         tableOfComment.dataSource = self
         
-        viewInputY = viewInput.frame.origin.y
-        
         loadData()
         iniViewInput()
     }
@@ -41,7 +41,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
             User.getUserInfoBy(id: curUser.uid) { (user) in
                 self.user = user
                 
-                Utilites.downloadImage(from: URL(string: self.user.photoURL!)!, completion: { (image) in
+                Utilites.downloadImage(from: URL(string: self.user.photoURL!)!, id: curUser.uid, completion: { (image) in
                     self.iv_userAvatar.image = image
                 })
             }
@@ -57,45 +57,41 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: self.view.window)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: self.view.window)
+        viewInputY = viewInput.frame.origin.y
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: self.view.window)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: self.view.window)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self.view.window)
     }
     @objc func keyboardWillShow(_ sender: NSNotification) {
-        let userInfo = sender.userInfo!
         
-        let keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
         
-        let offset = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
-        
-        print("pos view input: \(viewInput.frame.origin.y)")
-        print("viewInputY: \(viewInputY)")
-        print("keyboard height: \(keyboardSize.height)")
-        print("offset: \(offset.height)")
-        
-        if keyboardSize.height == offset.height {
-            print("wtf")
-            if viewInput.frame.origin.y <= viewInputY {
-                print("ok do animation")
-                UIView.animate(withDuration: 0.15) {
-                    self.viewInput.frame.origin.y -= keyboardSize.height
-                }
-            }
-        }else{
+        if let userInfo = sender.userInfo {
+            let keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
+            
+            let offset = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
+            
             UIView.animate(withDuration: 0.15) {
-                self.viewInput.frame.origin.y += keyboardSize.height - offset.height
+                self.view.layoutIfNeeded()
+                self.inputViewBottonConstraint.constant = offset.height
             }
+            
         }
+        
  
     }
     @objc func keyboardWillHide(_ sender: NSNotification) {
-        let userInfo = sender.userInfo!
-        let keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
-        self.viewInput.frame.origin.y += keyboardSize.height
+        print("keyboar will hide")
+        UIView.animate(withDuration: 0.15) {
+            self.view.layoutIfNeeded()
+            self.inputViewBottonConstraint.constant = 0//keyboardSize.height
+        }
+        
+        //self.viewInput.frame.origin.y += keyboardSize.height
     }
     
     @IBAction func buttonBack(_ sender: Any) {

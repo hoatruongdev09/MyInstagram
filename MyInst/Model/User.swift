@@ -54,6 +54,8 @@ class User {
         newUserRef.setValue(dict)
     }
     
+    
+    
     static func getUserInfoBy(id: String, completion: @escaping (_ usr: User) -> Void) {
         let userRef = Database.database().reference().child("user").child(id)
         

@@ -48,7 +48,7 @@ class CommentCell: UITableViewCell {
             cmtText.append(NSMutableAttributedString(string: ": \(self.comment.message!)"))
             self.lbl_comment.attributedText = cmtText
             
-            Utilites.downloadImage(from: URL(string: self.user.photoURL!)!, completion: { (image) in
+            Utilites.downloadImage(from: URL(string: self.user.photoURL!)!, id: self.user.uid!, completion: { (image) in
                 self.iv_avatar.image = image
             })
 

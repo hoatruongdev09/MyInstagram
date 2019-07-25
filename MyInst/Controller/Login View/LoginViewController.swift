@@ -28,7 +28,7 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
     
     var timer = Timer()
     var counter = 0
-    
+    let defaulAvatarURL = "https://firebasestorage.googleapis.com/v0/b/mypin-3be7c.appspot.com/o/default%2Fuser%20(1).png?alt=media&token=1e8fc068-27e4-4472-9db8-ac43ad6be33f"
     let signInWithFacebook = FBLoginButton()
     
     override func viewDidLoad() {
@@ -103,30 +103,37 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
             print("login facebook error: \(error.localizedDescription)")
             return
         }
-        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-        
-        Auth.auth().signIn(with: credential) { (result, error) in
-            if let error = error {
-                print("login facebook error firebase: \(error.localizedDescription)")
+        if let result = result {
+            if result.isCancelled {
                 return
             }
-            
-            if let authedUser = result?.user {
-                self.checkIfUserExisted(authedUser.uid, completion: { (existed) in
-                    if existed {
-                        print("user existed")
-                    } else {
-                        var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? "", email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
-                        user.save()
-                    }
-                })
+            let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+            Auth.auth().signIn(with: credential) { (result, error) in
+                if let error = error {
+                    print("login facebook error firebase: \(error.localizedDescription)")
+                    return
+                }
                 
-            }
-            
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabView") {
-                self.navigationController?.pushViewController(vc, animated: true)
+                if let authedUser = result?.user {
+                    self.checkIfUserExisted(authedUser.uid, completion: { (existed) in
+                        if existed {
+                            print("user existed")
+                        } else {
+                            var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? self.defaulAvatarURL, email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
+                            user.save()
+                        }
+                    })
+                    
+                }
+                
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabView") {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
+      
+        
+        
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
@@ -159,7 +166,7 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
                         if existed {
                             print("user existed")
                         } else {
-                            var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? "", email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
+                            var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? self.defaulAvatarURL, email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
                             user.save()
                         }
                     })

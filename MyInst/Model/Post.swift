@@ -17,7 +17,14 @@ class Post {
     var userName: String!
     var imageDownloadURL: String!
     var postID: String! = ""
-    private var image: UIImage!
+    private var image: UIImage! {
+        didSet {
+            imageSetEvent()
+        }
+    }
+    
+    var imageSetEvent = {() -> () in}
+    
     
     init(userUID: String, userName: String, caption: String, imageDownloadURL: String, postID: String) {
         self.userUID = userUID
@@ -25,7 +32,7 @@ class Post {
         self.caption = caption
         self.imageDownloadURL = imageDownloadURL
         
-        image = nil
+        
     }
     
     init(snapshot: DataSnapshot) {
@@ -37,11 +44,18 @@ class Post {
         
         self.postID = snapshot.key
         
+        Utilites.downloadImage(from: URL(string: imageDownloadURL)!, id: postID) { (image) in
+            self.image = image
+        }
+        
         //print("\(postID!) | \(userName!) | \(caption!) | \(imageDownloadURL!) | \(userUID!)")
     }
     
     func setImage(image: UIImage) {
         self.image = image
+    }
+    func getImage() -> UIImage! {
+        return image
     }
     
     func save() {
@@ -66,7 +80,7 @@ class Post {
     
     func uploadImage(userrID: String, keyID: String,completion: @escaping (_ imageDownloadUrl: String) -> Void) {
         let imageStorageRef = Storage.storage().reference().child("images").child(userrID)
-        if let fileData = image.jpegData(compressionQuality: 0.7) {
+        if let fileData = image.jpegData(compressionQuality: 0.6) {
             let newImageRef = imageStorageRef.child(keyID)
             
             let uploadTask = newImageRef.putData(fileData, metadata: nil) { (metaData, error) in
@@ -88,5 +102,16 @@ class Post {
             }
         }
     }
+    
+    static func countPostFor(userID: String, completion: @escaping (_ count: Int) -> Void) {
+        let postRef = Database.database().reference().child("post")
+        var count = 0
+        postRef.queryOrdered(byChild: "userUID").observe(.childAdded) { (snapshot) in
+            count += 1
+            print("count post: \(count)")
+        }
+        completion(count)
+    }
+   
     
 }

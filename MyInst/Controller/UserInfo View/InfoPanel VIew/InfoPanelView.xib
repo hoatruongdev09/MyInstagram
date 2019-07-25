@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoPanelView" customModule="MyInst" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="EcI-3W-uK4"/>
+                <outlet property="iv_userAvatar" destination="Ph0-kL-4ya" id="7BO-TN-MaS"/>
+                <outlet property="lbl_follower" destination="Ijd-yd-IgE" id="uzM-HS-wzh"/>
+                <outlet property="lbl_following" destination="afg-ek-Naw" id="pAY-oN-GU4"/>
+                <outlet property="lbl_postCount" destination="cgG-bY-4aF" id="ngt-PU-odV"/>
+                <outlet property="lbl_userName" destination="tf0-fW-2bR" id="isL-gI-n0i"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ph0-kL-4ya">
+                    <rect key="frame" x="10" y="27.5" width="45" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="FHr-ks-bCt"/>
+                        <constraint firstAttribute="width" constant="45" id="ZL0-DK-Bb5"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Follower" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijd-yd-IgE">
+                    <rect key="frame" x="184" y="41" width="57" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Following" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afg-ek-Naw">
+                    <rect key="frame" x="271" y="41" width="64" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Posts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgG-bY-4aF">
+                    <rect key="frame" x="116" y="41" width="38" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hòa Trương" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tf0-fW-2bR">
+                    <rect key="frame" x="10" y="77.5" width="66" height="15"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="afg-ek-Naw" secondAttribute="trailing" constant="40" id="6mf-aO-14g"/>
+                <constraint firstItem="Ijd-yd-IgE" firstAttribute="centerY" secondItem="cgG-bY-4aF" secondAttribute="centerY" id="Au2-fi-e6A"/>
+                <constraint firstItem="cgG-bY-4aF" firstAttribute="centerY" secondItem="Ph0-kL-4ya" secondAttribute="centerY" id="FBF-gg-v5U"/>
+                <constraint firstItem="Ph0-kL-4ya" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FBI-BR-AX3"/>
+                <constraint firstItem="tf0-fW-2bR" firstAttribute="top" secondItem="Ph0-kL-4ya" secondAttribute="bottom" constant="5" id="Pea-ue-Mba"/>
+                <constraint firstItem="afg-ek-Naw" firstAttribute="centerY" secondItem="Ijd-yd-IgE" secondAttribute="centerY" id="XFG-qi-3QT"/>
+                <constraint firstItem="cgG-bY-4aF" firstAttribute="leading" secondItem="Ph0-kL-4ya" secondAttribute="trailing" constant="61" id="XPL-q4-mMy"/>
+                <constraint firstItem="Ph0-kL-4ya" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27.5" id="bFn-LH-SyR"/>
+                <constraint firstItem="Ijd-yd-IgE" firstAttribute="leading" secondItem="cgG-bY-4aF" secondAttribute="trailing" constant="30" id="h1X-VJ-pRQ"/>
+                <constraint firstItem="Ph0-kL-4ya" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="oUx-oF-iTp"/>
+                <constraint firstItem="tf0-fW-2bR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="sNU-7L-Qom"/>
+                <constraint firstItem="afg-ek-Naw" firstAttribute="leading" secondItem="Ijd-yd-IgE" secondAttribute="trailing" constant="30" id="vLd-KJ-fLu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="121.0144927536232" y="138.61607142857142"/>
+        </view>
+    </objects>
+</document>

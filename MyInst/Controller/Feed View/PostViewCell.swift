@@ -11,11 +11,7 @@ import Firebase
 
 class PostViewCell: UITableViewCell {
     
-    var post: Post! {
-        didSet {
-            self.updateUI()
-        }
-    }
+    var post: Post!
     
     var onCommentTap = { () -> () in}
     
@@ -59,11 +55,17 @@ class PostViewCell: UITableViewCell {
         self.tv_caption.attributedText = captionString
         self.lbl_userName.text = post.userName
         
-        if let imageDownloadUrl = post.imageDownloadURL {
-            Utilites.downloadImage(from: URL(string: imageDownloadUrl)!) { (image) in
-//                self.iv_postImage.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-                self.iv_postImage.image = image
-            }
+//        if let imageDownloadUrl = post.imageDownloadURL {
+//            Utilites.downloadImage(from: URL(string: imageDownloadUrl)!, id: post.postID!) { (image) in
+////                self.iv_postImage.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+//                DispatchQueue.main.async {
+//                    self.iv_postImage.image = image
+//                }
+//
+//            }
+//        }
+        DispatchQueue.main.async {
+            self.iv_postImage.image = self.post.getImage()
         }
         if let usr: User = CacheUser.checkAndGetUser(id: post.userUID){
             self.iv_userAvatar.image = usr.imagePhoto
@@ -73,11 +75,35 @@ class PostViewCell: UITableViewCell {
         }
         
     }
+    func updateUI2() {
+        
+        let captionString = NSMutableAttributedString(string: post.userName!, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)])
+        captionString.append(NSMutableAttributedString(string: ": \(post.caption!)"))
+        
+        self.tv_caption.attributedText = captionString
+        self.lbl_userName.text = post.userName
+        
+        post.imageSetEvent = {() -> () in
+            DispatchQueue.main.async {
+                self.iv_postImage.image = self.post.getImage()
+            }
+            
+        }
+        
+        
+        if let usr: User = CacheUser.checkAndGetUser(id: post.userUID){
+            self.iv_userAvatar.image = usr.imagePhoto
+            
+        } else {
+            downloadUserAvatar(id: post.userUID)
+        }
+        
+    }
     
     
     private func downloadUserAvatar(id: String) {
         User.getUserInfoBy(id: id) { (user) in
-            Utilites.downloadImage(from: URL(string: user.photoURL)!, completion: { (image) in
+            Utilites.downloadImage(from: URL(string: user.photoURL)!, id: id, completion: { (image) in
                 self.iv_userAvatar.image = image
                 user.imagePhoto = image
                 CacheUser.addToCache(usr: user)
