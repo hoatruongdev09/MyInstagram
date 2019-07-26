@@ -40,12 +40,12 @@ class FeedsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let post = posts[indexPath.row]
         cell.post = post
-        cell.post.imageSetEvent = {()-> () in cell.updateUI()}
-        //cell.updateUI()
+        cell.updateUI()
         
         cell.onCommentTap = { () -> () in
             if let cmView: CommentViewController = self.storyboard?.instantiateViewController(withIdentifier: "commentView") as? CommentViewController {
                 cmView.postID = post.postID
+                cmView.imagePost = cell.iv_postImage.image
                 self.present(cmView, animated: true, completion: nil)
             }
         }
@@ -64,15 +64,17 @@ class FeedsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.posts.insert(newPost, at: 0)
                 
                 let indexPath = IndexPath(row: 0, section: 0)
+                self.feedTableView.beginUpdates()
                 self.feedTableView.insertRows(at: [indexPath], with: .top)
+                self.feedTableView.endUpdates()
             }
         }
-//        self.feedTableView.reloadData()
+        //self.feedTableView.reloadData()
     }
     
 
     @IBAction func buttonCamera(_ sender: Any) {
-        if let vc: ChoosePhotoViewController = self.storyboard?.instantiateViewController(withIdentifier: "choosePhotoViewController") as? ChoosePhotoViewController {
+        if let vc: ChoosePhotoViewController = self.storyboard?.instantiateViewController(withIdentifier: "choosePhotoViewController") as! ChoosePhotoViewController {
             vc.chooseFromCamera = true
             
             self.navigationController?.pushViewController(vc, animated: true)

@@ -53,7 +53,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         let optionPanelWidth = view_optionPanel.bounds.width
+        let optionPanelWidth = view_optionPanel.bounds.width
         slideOptionPanel_trailConstraint.constant = -optionPanelWidth
         
     }
@@ -67,7 +67,16 @@ class UserViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         }
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cmView: CommentViewController = self.storyboard?.instantiateViewController(withIdentifier: "commentView") as? CommentViewController {
+            if let cell: PostCollectionViewCell = postCollection.cellForItem(at: indexPath) as? PostCollectionViewCell {
+                cmView.postID = cell.post.postID
+                cmView.imagePost = cell.iv_postContent.image
+                self.present(cmView, animated: true, completion: nil)
+            }
+           
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("posts count: \(posts.count)")
         return posts.count;
@@ -122,27 +131,31 @@ class UserViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func buttonSingOutClick(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            if let vc: ViewController = self.storyboard?.instantiateViewController(withIdentifier: "viewController") as! ViewController{
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            
         } catch {
             print("error sign out: \(error.localizedDescription)")
+            return
+        }
+        if let vc: ViewController = self.storyboard?.instantiateViewController(withIdentifier: "viewController") as! ViewController{
+            self.navigationController?.popToRootViewController(animated: true)
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     func animateHideOptionPanel() {
-        let optionPanelWidth = view_optionPanel.bounds.width
+        
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             //self.slideOptionPanel_trailConstraint.constant = -optionPanelWidth
-            self.view_optionPanel.frame.origin.x = self.view.bounds.width - optionPanelWidth
+            self.view_optionPanel.frame.origin.x = self.view.bounds.width
             
         }, completion: nil)
     }
     func animateShowOptionPanel() {
+        let optionPanelWidth = view_optionPanel.bounds.width
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             //self.slideOptionPanel_trailConstraint.constant = 0
-            self.view_optionPanel.frame.origin.x = self.view.bounds.width
+            self.view_optionPanel.frame.origin.x = self.view.bounds.width - optionPanelWidth
         }, completion: nil)
 
     }

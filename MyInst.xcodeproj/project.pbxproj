@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2317C122EAAD4D0077C217 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2317C022EAAD4D0077C217 /* EditProfileViewController.swift */; };
 		0B2861D422E60447000E9A18 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861D322E60447000E9A18 /* Comment.swift */; };
 		0B2861D722E60A9F000E9A18 /* CacheUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861D622E60A9F000E9A18 /* CacheUser.swift */; };
 		0B2861D922E60F5B000E9A18 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861D822E60F5B000E9A18 /* CommentViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B2317C022EAAD4D0077C217 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		0B2861D322E60447000E9A18 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		0B2861D622E60A9F000E9A18 /* CacheUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheUser.swift; sourceTree = "<group>"; };
 		0B2861D822E60F5B000E9A18 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2317BF22EAAD2F0077C217 /* Edit Profile View */ = {
+			isa = PBXGroup;
+			children = (
+				0B2317C022EAAD4D0077C217 /* EditProfileViewController.swift */,
+			);
+			path = "Edit Profile View";
+			sourceTree = "<group>";
+		};
 		0B2861D522E60A86000E9A18 /* MISC */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +134,7 @@
 		0B6C8FB522E2CDD80051B366 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0B2317BF22EAAD2F0077C217 /* Edit Profile View */,
 				0B81824322E80AA400BEBB63 /* UserInfo View */,
 				0B6C8FB922E2CDD80051B366 /* Login View */,
 				0B2861DA22E612F8000E9A18 /* Comment View */,
@@ -338,6 +349,7 @@
 				0B6C8FC222E2CDD80051B366 /* ChoosePhotoViewController.swift in Sources */,
 				0B2861DC22E61329000E9A18 /* CommentCell.swift in Sources */,
 				0B6C8FC122E2CDD80051B366 /* UploadPhotoViewController.swift in Sources */,
+				0B2317C122EAAD4D0077C217 /* EditProfileViewController.swift in Sources */,
 				0B4CD9D022E306A9008F18F4 /* PostViewCell.swift in Sources */,
 				0BD7235722E897F100ACAE01 /* PostCollectionViewCell.swift in Sources */,
 				0B6C8FC022E2CDD80051B366 /* ViewController.swift in Sources */,

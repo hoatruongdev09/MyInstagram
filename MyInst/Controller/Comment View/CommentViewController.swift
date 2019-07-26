@@ -17,7 +17,10 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var viewInput: UIView!
     
+    @IBOutlet weak var iv_postContent: UIImageView!
     @IBOutlet weak var inputViewBottonConstraint: NSLayoutConstraint!
+    
+    var imagePost: UIImage! = nil
     
     var postID: String! = ""
     var comments: [Comment] = []
@@ -37,15 +40,23 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func iniViewInput() {
+        if let image = imagePost {
+            iv_postContent.image = image
+        }
         if let curUser = Auth.auth().currentUser {
             User.getUserInfoBy(id: curUser.uid) { (user) in
                 self.user = user
                 
                 Utilites.downloadImage(from: URL(string: self.user.photoURL!)!, id: curUser.uid, completion: { (image) in
-                    self.iv_userAvatar.image = image
+                    DispatchQueue.main.async {
+                        self.iv_userAvatar.image = image
+                    }
+                    
                 })
             }
         }
+        
+        
         iv_userAvatar.layer.borderWidth = 1
         iv_userAvatar.layer.masksToBounds = false
         iv_userAvatar.layer.borderColor = UIColor.black.cgColor

@@ -49,7 +49,7 @@ class PostViewCell: UITableViewCell {
     
     func updateUI() {
         
-        var captionString = NSMutableAttributedString(string: post.userName!, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)])
+        let captionString = NSMutableAttributedString(string: post.userName!, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)])
         captionString.append(NSMutableAttributedString(string: ": \(post.caption!)"))
         
         self.tv_caption.attributedText = captionString
@@ -64,7 +64,7 @@ class PostViewCell: UITableViewCell {
 //
 //            }
 //        }
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             self.iv_postImage.image = self.post.getImage()
         }
         if let usr: User = CacheUser.checkAndGetUser(id: post.userUID){
@@ -104,7 +104,9 @@ class PostViewCell: UITableViewCell {
     private func downloadUserAvatar(id: String) {
         User.getUserInfoBy(id: id) { (user) in
             Utilites.downloadImage(from: URL(string: user.photoURL)!, id: id, completion: { (image) in
-                self.iv_userAvatar.image = image
+                DispatchQueue.main.async {
+                    self.iv_userAvatar.image = image
+                }
                 user.imagePhoto = image
                 CacheUser.addToCache(usr: user)
             })
