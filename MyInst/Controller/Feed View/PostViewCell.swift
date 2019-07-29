@@ -14,6 +14,7 @@ class PostViewCell: UITableViewCell {
     var post: Post!
     
     var onCommentTap = { () -> () in}
+    var onUserTap = {() -> () in}
     
     @IBOutlet weak var iv_userAvatar: UIImageView!
     @IBOutlet weak var lbl_userName: UILabel!
@@ -36,8 +37,13 @@ class PostViewCell: UITableViewCell {
     
     func commonInit() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(onCommentTapped(sender:)))
+        let userTap = UITapGestureRecognizer(target: self, action: #selector(onUserTap(sender:)))
+        
         tv_caption.isUserInteractionEnabled = true
         tv_caption.addGestureRecognizer(tap)
+        
+        iv_userAvatar.isUserInteractionEnabled = true
+        iv_userAvatar.addGestureRecognizer(userTap)
         
         iv_userAvatar.layer.borderWidth = 1
         iv_userAvatar.layer.masksToBounds = false
@@ -64,6 +70,13 @@ class PostViewCell: UITableViewCell {
 //
 //            }
 //        }
+        if let image = self.post.getImage() {
+            self.iv_postImage.image = self.post.getImage()
+        } else {
+            Utilites.downloadImage(from: URL(string: self.post.imageDownloadURL!)!, id: self.post.postID) { (image) in
+                self.iv_postImage.image = image
+            }
+        }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             self.iv_postImage.image = self.post.getImage()
         }
@@ -115,5 +128,8 @@ class PostViewCell: UITableViewCell {
     
     @objc func onCommentTapped(sender: UITapGestureRecognizer) {
         onCommentTap()
+    }
+    @objc func onUserTap(sender: UITapGestureRecognizer) {
+        onUserTap()
     }
 }

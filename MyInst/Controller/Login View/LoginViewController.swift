@@ -119,7 +119,8 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
                         if existed {
                             print("user existed")
                         } else {
-                            var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? self.defaulAvatarURL, email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
+                            let user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonumous", nickName: authedUser.displayName ?? "Anonumous", website: "", bio: "", gender: "Not Show", photoURL: authedUser.photoURL?.absoluteString ?? self.defaulAvatarURL, email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
+//                            var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? self.defaulAvatarURL, email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
                             user.save()
                         }
                     })
@@ -166,7 +167,7 @@ class LoginViewController: UIViewController,UICollectionViewDelegate, UICollecti
                         if existed {
                             print("user existed")
                         } else {
-                            var user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonymouse", photoURL: authedUser.photoURL?.absoluteString ?? self.defaulAvatarURL, email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
+                           let user: User = User(uid: authedUser.uid, displayName: authedUser.displayName ?? "Anonumous", nickName: authedUser.displayName ?? "Anonumous", website: "", bio: "", gender: "Not Show", photoURL: authedUser.photoURL?.absoluteString ?? self.defaulAvatarURL, email: authedUser.email ?? "", phone: authedUser.phoneNumber ?? "")
                             user.save()
                         }
                     })

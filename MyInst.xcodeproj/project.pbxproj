@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B1A603622ED46D7001D6F34 /* MessengerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1A603522ED46D7001D6F34 /* MessengerInfoView.swift */; };
+		0B1A603822ED46FB001D6F34 /* MessengerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1A603722ED46FB001D6F34 /* MessengerInfoView.xib */; };
+		0B1A603B22ED4C5D001D6F34 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1A603A22ED4C5D001D6F34 /* MessageViewController.swift */; };
 		0B2317C122EAAD4D0077C217 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2317C022EAAD4D0077C217 /* EditProfileViewController.swift */; };
+		0B2317C322EAB5DA0077C217 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2317C222EAB5DA0077C217 /* ProfileTableViewController.swift */; };
 		0B2861D422E60447000E9A18 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861D322E60447000E9A18 /* Comment.swift */; };
 		0B2861D722E60A9F000E9A18 /* CacheUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861D622E60A9F000E9A18 /* CacheUser.swift */; };
 		0B2861D922E60F5B000E9A18 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861D822E60F5B000E9A18 /* CommentViewController.swift */; };
@@ -24,6 +28,9 @@
 		0B6C8FC422E2CDD80051B366 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C8FBB22E2CDD80051B366 /* LoginViewController.swift */; };
 		0B6C8FC522E2CDD80051B366 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C8FBC22E2CDD80051B366 /* UserViewController.swift */; };
 		0B6C8FC622E2CDD80051B366 /* FeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C8FBD22E2CDD80051B366 /* FeedsViewController.swift */; };
+		0B7D0D4422EF496F00E88B89 /* RecievedMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7D0D4322EF496F00E88B89 /* RecievedMessageViewCell.swift */; };
+		0B7D0D4622EF4A6F00E88B89 /* SenderMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7D0D4522EF4A6F00E88B89 /* SenderMessageViewCell.swift */; };
+		0B7D0D4822EF4BD000E88B89 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7D0D4722EF4BD000E88B89 /* Message.swift */; };
 		0B81824622E80AF400BEBB63 /* InfoPanelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B81824522E80AF400BEBB63 /* InfoPanelView.xib */; };
 		0B81824822E80B0E00BEBB63 /* InfoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B81824722E80B0E00BEBB63 /* InfoPanelView.swift */; };
 		0BD29A0F22E2C86F00ECC8D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD29A0E22E2C86F00ECC8D6 /* AppDelegate.swift */; };
@@ -31,11 +38,16 @@
 		0BD29A1922E2C87000ECC8D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BD29A1722E2C87000ECC8D6 /* LaunchScreen.storyboard */; };
 		0BD29A2122E2C8C400ECC8D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BD29A2022E2C8C400ECC8D6 /* GoogleService-Info.plist */; };
 		0BD7235722E897F100ACAE01 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7235622E897F100ACAE01 /* PostCollectionViewCell.swift */; };
+		0BD79C4722EC4FED0094B708 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD79C4622EC4FED0094B708 /* OtherUserViewController.swift */; };
 		7E0F7EF8A8A468B4F927EBA5 /* Pods_MyInst.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62EDB6BE959DD31AA7ADBC1 /* Pods_MyInst.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B1A603522ED46D7001D6F34 /* MessengerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerInfoView.swift; sourceTree = "<group>"; };
+		0B1A603722ED46FB001D6F34 /* MessengerInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessengerInfoView.xib; sourceTree = "<group>"; };
+		0B1A603A22ED4C5D001D6F34 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		0B2317C022EAAD4D0077C217 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		0B2317C222EAB5DA0077C217 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		0B2861D322E60447000E9A18 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		0B2861D622E60A9F000E9A18 /* CacheUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheUser.swift; sourceTree = "<group>"; };
 		0B2861D822E60F5B000E9A18 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +64,9 @@
 		0B6C8FBB22E2CDD80051B366 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0B6C8FBC22E2CDD80051B366 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		0B6C8FBD22E2CDD80051B366 /* FeedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsViewController.swift; sourceTree = "<group>"; };
+		0B7D0D4322EF496F00E88B89 /* RecievedMessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecievedMessageViewCell.swift; sourceTree = "<group>"; };
+		0B7D0D4522EF4A6F00E88B89 /* SenderMessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageViewCell.swift; sourceTree = "<group>"; };
+		0B7D0D4722EF4BD000E88B89 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0B81824522E80AF400BEBB63 /* InfoPanelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPanelView.xib; sourceTree = "<group>"; };
 		0B81824722E80B0E00BEBB63 /* InfoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPanelView.swift; sourceTree = "<group>"; };
 		0BD29A0B22E2C86F00ECC8D6 /* MyInst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInst.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +76,7 @@
 		0BD29A1A22E2C87000ECC8D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BD29A2022E2C8C400ECC8D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BD7235622E897F100ACAE01 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
+		0BD79C4622EC4FED0094B708 /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
 		3443215A4E2C5E06C6DC2E19 /* Pods-MyInst.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInst.release.xcconfig"; path = "Target Support Files/Pods-MyInst/Pods-MyInst.release.xcconfig"; sourceTree = "<group>"; };
 		A00852879D12122DC516A938 /* Pods-MyInst.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInst.debug.xcconfig"; path = "Target Support Files/Pods-MyInst/Pods-MyInst.debug.xcconfig"; sourceTree = "<group>"; };
 		E62EDB6BE959DD31AA7ADBC1 /* Pods_MyInst.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInst.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,10 +94,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B1A603422ED4594001D6F34 /* Message View */ = {
+			isa = PBXGroup;
+			children = (
+				0B1A603922ED4C20001D6F34 /* MessengerInfoView */,
+				0B7D0D4322EF496F00E88B89 /* RecievedMessageViewCell.swift */,
+				0B1A603A22ED4C5D001D6F34 /* MessageViewController.swift */,
+				0B7D0D4522EF4A6F00E88B89 /* SenderMessageViewCell.swift */,
+			);
+			path = "Message View";
+			sourceTree = "<group>";
+		};
+		0B1A603922ED4C20001D6F34 /* MessengerInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				0B1A603522ED46D7001D6F34 /* MessengerInfoView.swift */,
+				0B1A603722ED46FB001D6F34 /* MessengerInfoView.xib */,
+			);
+			path = MessengerInfoView;
+			sourceTree = "<group>";
+		};
 		0B2317BF22EAAD2F0077C217 /* Edit Profile View */ = {
 			isa = PBXGroup;
 			children = (
 				0B2317C022EAAD4D0077C217 /* EditProfileViewController.swift */,
+				0B2317C222EAB5DA0077C217 /* ProfileTableViewController.swift */,
 			);
 			path = "Edit Profile View";
 			sourceTree = "<group>";
@@ -119,6 +156,7 @@
 				0B6C8FB122E2CDD60051B366 /* Post.swift */,
 				0B4CD9D122E31626008F18F4 /* User.swift */,
 				0B2861D322E60447000E9A18 /* Comment.swift */,
+				0B7D0D4722EF4BD000E88B89 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,6 +172,7 @@
 		0B6C8FB522E2CDD80051B366 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0B1A603422ED4594001D6F34 /* Message View */,
 				0B2317BF22EAAD2F0077C217 /* Edit Profile View */,
 				0B81824322E80AA400BEBB63 /* UserInfo View */,
 				0B6C8FB922E2CDD80051B366 /* Login View */,
@@ -161,6 +200,7 @@
 				0B81824422E80AC000BEBB63 /* InfoPanel VIew */,
 				0B6C8FBC22E2CDD80051B366 /* UserViewController.swift */,
 				0BD7235622E897F100ACAE01 /* PostCollectionViewCell.swift */,
+				0BD79C4622EC4FED0094B708 /* OtherUserViewController.swift */,
 			);
 			path = "UserInfo View";
 			sourceTree = "<group>";
@@ -287,6 +327,7 @@
 			files = (
 				0BD29A1922E2C87000ECC8D6 /* LaunchScreen.storyboard in Resources */,
 				0BD29A2122E2C8C400ECC8D6 /* GoogleService-Info.plist in Resources */,
+				0B1A603822ED46FB001D6F34 /* MessengerInfoView.xib in Resources */,
 				0B81824622E80AF400BEBB63 /* InfoPanelView.xib in Resources */,
 				0BD29A1622E2C87000ECC8D6 /* Assets.xcassets in Resources */,
 				0B6C8FBF22E2CDD80051B366 /* Main.storyboard in Resources */,
@@ -343,11 +384,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2861D922E60F5B000E9A18 /* CommentViewController.swift in Sources */,
+				0BD79C4722EC4FED0094B708 /* OtherUserViewController.swift in Sources */,
+				0B7D0D4622EF4A6F00E88B89 /* SenderMessageViewCell.swift in Sources */,
 				0B6C8FC422E2CDD80051B366 /* LoginViewController.swift in Sources */,
 				0B2861D722E60A9F000E9A18 /* CacheUser.swift in Sources */,
 				0B6C8FC522E2CDD80051B366 /* UserViewController.swift in Sources */,
 				0B6C8FC222E2CDD80051B366 /* ChoosePhotoViewController.swift in Sources */,
 				0B2861DC22E61329000E9A18 /* CommentCell.swift in Sources */,
+				0B1A603622ED46D7001D6F34 /* MessengerInfoView.swift in Sources */,
+				0B7D0D4822EF4BD000E88B89 /* Message.swift in Sources */,
+				0B2317C322EAB5DA0077C217 /* ProfileTableViewController.swift in Sources */,
 				0B6C8FC122E2CDD80051B366 /* UploadPhotoViewController.swift in Sources */,
 				0B2317C122EAAD4D0077C217 /* EditProfileViewController.swift in Sources */,
 				0B4CD9D022E306A9008F18F4 /* PostViewCell.swift in Sources */,
@@ -355,12 +401,14 @@
 				0B6C8FC022E2CDD80051B366 /* ViewController.swift in Sources */,
 				0BD29A0F22E2C86F00ECC8D6 /* AppDelegate.swift in Sources */,
 				0B2861D422E60447000E9A18 /* Comment.swift in Sources */,
+				0B1A603B22ED4C5D001D6F34 /* MessageViewController.swift in Sources */,
 				0B81824822E80B0E00BEBB63 /* InfoPanelView.swift in Sources */,
 				0B6C8FC622E2CDD80051B366 /* FeedsViewController.swift in Sources */,
 				0B2861DE22E69853000E9A18 /* Utilites.swift in Sources */,
 				0B6C8FBE22E2CDD80051B366 /* Post.swift in Sources */,
 				0B6C8FC322E2CDD80051B366 /* SlideImageCell.swift in Sources */,
 				0B4CD9D222E31626008F18F4 /* User.swift in Sources */,
+				0B7D0D4422EF496F00E88B89 /* RecievedMessageViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

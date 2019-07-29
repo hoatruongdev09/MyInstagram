@@ -79,30 +79,21 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self.view.window)
     }
     @objc func keyboardWillShow(_ sender: NSNotification) {
-        
-        
         if let userInfo = sender.userInfo {
-            let keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
-            
             let offset = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
             
             UIView.animate(withDuration: 0.15) {
                 self.view.layoutIfNeeded()
                 self.inputViewBottonConstraint.constant = offset.height
             }
-            
         }
-        
- 
     }
     @objc func keyboardWillHide(_ sender: NSNotification) {
         print("keyboar will hide")
         UIView.animate(withDuration: 0.15) {
             self.view.layoutIfNeeded()
-            self.inputViewBottonConstraint.constant = 0//keyboardSize.height
+            self.inputViewBottonConstraint.constant = 0
         }
-        
-        //self.viewInput.frame.origin.y += keyboardSize.height
     }
     
     @IBAction func buttonBack(_ sender: Any) {
@@ -125,7 +116,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentCell
+        let cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentCell
         
         cell.setComment(comments[indexPath.row])
         

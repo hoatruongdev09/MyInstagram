@@ -49,6 +49,17 @@ class FeedsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.present(cmView, animated: true, completion: nil)
             }
         }
+        
+        cell.onUserTap = { () -> () in
+            if cell.post.userUID == Auth.auth().currentUser?.uid {
+                self.tabBarController?.selectedIndex = 2
+            } else {
+                if let vc: OtherUserViewController = self.storyboard?.instantiateViewController(withIdentifier: "otherView") as? OtherUserViewController {
+                    vc.userID = cell.post.userUID
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
+        }
         //cell.loadContent()
         
         return cell
@@ -74,7 +85,7 @@ class FeedsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 
     @IBAction func buttonCamera(_ sender: Any) {
-        if let vc: ChoosePhotoViewController = self.storyboard?.instantiateViewController(withIdentifier: "choosePhotoViewController") as! ChoosePhotoViewController {
+        if let vc: ChoosePhotoViewController = self.storyboard?.instantiateViewController(withIdentifier: "choosePhotoViewController") as? ChoosePhotoViewController {
             vc.chooseFromCamera = true
             
             self.navigationController?.pushViewController(vc, animated: true)

@@ -65,6 +65,8 @@ class UserViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.view_info.user = self.user!
             self.view_info.updateUI()
             
+            self.lbl_nickName.text = self.user.nickName
+            
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -102,13 +104,16 @@ class UserViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     func loadAllPostOfUser(userID: String) {
-        let postRef = Database.database().reference().child("post")
-        postRef.queryOrdered(byChild: "userUID").queryEqual(toValue: userID).observe(.childAdded) { (snapshot) in
+        let postRef = Database.database().reference().child("post").queryOrdered(byChild: "userUID").queryEqual(toValue: userID)
+        postRef.observe(.value) { (snapshot) in
+            
+            self.view_info.lbl_postCount.text = "\(snapshot.childrenCount)\nPosts"
+        }
+        postRef.observe(.childAdded) { (snapshot) in
             let post = Post(snapshot: snapshot)
             print("post: \(post.imageDownloadURL!)")
             self.posts.insert(post, at: 0)
-            self.view_info.lbl_postCount.text = "\(self.posts.count)\nPosts"
-
+            
             self.postCollection.reloadData()
         }
     }
@@ -136,10 +141,9 @@ class UserViewController: UIViewController, UICollectionViewDelegate, UICollecti
             print("error sign out: \(error.localizedDescription)")
             return
         }
-        if let vc: ViewController = self.storyboard?.instantiateViewController(withIdentifier: "viewController") as! ViewController{
-            self.navigationController?.popToRootViewController(animated: true)
-//            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        
+        self.navigationController?.popToRootViewController(animated: true)
+
     }
     
     func animateHideOptionPanel() {
@@ -158,5 +162,11 @@ class UserViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.view_optionPanel.frame.origin.x = self.view.bounds.width - optionPanelWidth
         }, completion: nil)
 
+    }
+    @IBAction func buttonEditProfileClicked(_ sender: Any) {
+        if let vc: EditProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "editProfileView") as? EditProfileViewController {
+            vc.user = self.user
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 }

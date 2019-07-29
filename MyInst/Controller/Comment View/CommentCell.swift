@@ -44,7 +44,7 @@ class CommentCell: UITableViewCell {
         User.getUserInfoBy(id: comment.userID) { (usr) in
             self.user = usr
 
-            var cmtText = NSMutableAttributedString(string: self.user.displayName!, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 13)])
+            let cmtText = NSMutableAttributedString(string: self.user.displayName!, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 13)])
             cmtText.append(NSMutableAttributedString(string: ": \(self.comment.message!)"))
             self.lbl_comment.attributedText = cmtText
             

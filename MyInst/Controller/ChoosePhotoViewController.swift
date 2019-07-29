@@ -48,10 +48,10 @@ class ChoosePhotoViewController: UIViewController, UINavigationControllerDelegat
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        self.image = info[.originalImage] as! UIImage
+        self.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
         let vc: UIViewController = (self.storyboard?.instantiateViewController(withIdentifier: "uploadPhotoViewController"))!
-        if let view: UploadPhotoViewController = vc as! UploadPhotoViewController {
+        if let view: UploadPhotoViewController = vc as? UploadPhotoViewController {
             view.image = self.image
             self.navigationController?.pushViewController(view, animated: true)
             print("OK")
@@ -63,6 +63,12 @@ class ChoosePhotoViewController: UIViewController, UINavigationControllerDelegat
 //
 //            self.navigationController?.pushViewController(vc, animated: true)
         
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+        if let vc: UIViewController = self.storyboard?.instantiateViewController(withIdentifier: "tabView") {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }

@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     }
     
     func checkIfUserLoggedIn() {
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             print("user Loggin")
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabView") {
                 self.navigationController?.pushViewController(vc, animated: true)

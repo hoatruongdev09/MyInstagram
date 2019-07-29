@@ -43,6 +43,9 @@ class InfoPanelView: UIView {
         iv_userAvatar.layer.borderColor = UIColor.black.cgColor
         iv_userAvatar.layer.cornerRadius = iv_userAvatar.frame.height/2
         iv_userAvatar.clipsToBounds = true
+        
+        
+        
     }
     
     
@@ -54,7 +57,12 @@ class InfoPanelView: UIView {
                 self.iv_userAvatar.image = image
             }
             
-
+            user.getAllFollower { (snapshot) in
+                self.lbl_follower.text = "\(snapshot.childrenCount)\nFollower"
+            }
+            user.getAllFollowing { (snapshot) in
+                self.lbl_following.text = "\(snapshot.childrenCount)\nFollowing"
+            }
         }
     }
     
