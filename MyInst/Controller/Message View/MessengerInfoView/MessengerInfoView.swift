@@ -9,16 +9,19 @@
 import UIKit
 
 class MessengerInfoView: UIView {
+
     
-    @IBOutlet weak var iv_userAvatar: UIImageView!
+    @IBOutlet var iv_allUserAvatar: [UIImageView]!
+    
+    
     @IBOutlet weak var lbl_userName: UILabel!
     @IBOutlet weak var lbl_lastOnline: UILabel!
     
     @IBOutlet var contentView: UIView!
     
-    var backButtonEvent = { () -> () in}
+    var members: [String: User] = [:]
     
-    var user: User!
+    var backButtonEvent = { () -> () in }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,21 +38,40 @@ class MessengerInfoView: UIView {
         bundle.loadNibNamed("MessengerInfoView", owner: self, options: nil)
         addSubview(contentView)
         contentView.bounds = self.bounds
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = true
         
-        iv_userAvatar.layer.borderWidth = 1
-        iv_userAvatar.layer.masksToBounds = false
-        iv_userAvatar.layer.borderColor = UIColor.black.cgColor
-        iv_userAvatar.layer.cornerRadius = iv_userAvatar.frame.height/2
-        iv_userAvatar.clipsToBounds = true
+        for imageView in iv_allUserAvatar {
+            imageView.layer.borderWidth = 1
+            imageView.layer.masksToBounds = false
+            imageView.layer.borderColor = UIColor.black.cgColor
+            imageView.layer.cornerRadius = imageView.frame.height/2
+            imageView.clipsToBounds = true
+        }
     
     }
     
     func updateUI() {
-        if self.user != nil {
-            iv_userAvatar.image = user.imagePhoto
-            lbl_userName.text = user.nickName
-            
+        
+        if self.members.count != 0 {
+            var index = 0
+            for user in members {
+                if index == 0 {
+                    lbl_userName.text = user.value.nickName
+                } else {
+                    lbl_userName.text?.append(contentsOf: ", \(user.value.nickName)")
+                }
+                if let tmp: User = CacheUser.checkAndGetUser(id: user.key) {
+                    self.iv_allUserAvatar![index].image = tmp.imagePhoto
+                } else {
+                    Utilites.downloadImage(from: URL(string: user.value.photoURL!)!, id: user.key) { (image) in
+                        self.iv_allUserAvatar![index].image = image
+                    }
+                }
+                index += 1
+            }
+        }
+        for index in (self.members.count)...(self.iv_allUserAvatar.count - 1) {
+            self.iv_allUserAvatar[index].isHidden = true
         }
     }
     

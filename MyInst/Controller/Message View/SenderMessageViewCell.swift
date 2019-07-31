@@ -12,6 +12,8 @@ class SenderMessageViewCell: UITableViewCell {
     
     @IBOutlet weak var lbl_message: UILabel!
     
+    var message: Message!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +24,9 @@ class SenderMessageViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func setMessage(msg: Message) {
+        self.message = msg
+        lbl_message.text = message.content
+    }
 }

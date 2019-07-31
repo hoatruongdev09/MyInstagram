@@ -703,7 +703,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZA-YS-6CR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1265" y="992"/>
+            <point key="canvasLocation" x="1297" y="824"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="SIa-Be-YZL">
@@ -857,7 +857,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aj4-Pi-XdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2066.4000000000001" y="989.95502248875573"/>
+            <point key="canvasLocation" x="2342" y="872"/>
         </scene>
         <!--Upload Photo View Controller-->
         <scene sceneID="Jvo-u1-bYB">
@@ -1079,7 +1079,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="bCM-2K-Fnz"/>
+                                    <constraint firstAttribute="height" constant="60" id="Q0f-t5-fVR"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpY-Um-IgW">
@@ -1097,6 +1097,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWi-JC-nBx">
                                         <rect key="frame" x="329" y="5" width="36" height="30"/>
                                         <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="buttonSendClick:" destination="3ch-uI-FRw" eventType="touchUpInside" id="42P-Xx-Gy7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1113,7 +1116,7 @@
                                 <rect key="frame" x="0.0" y="80" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="receivedCell" id="Di2-ut-obx" customClass="RecievedMessageViewCell" customModule="MyInst" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recieverCell" id="Di2-ut-obx" customClass="RecievedMessageViewCell" customModule="MyInst" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Di2-ut-obx" id="CBW-pt-k2n">
@@ -1174,16 +1177,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="NnA-RN-1Or" firstAttribute="trailing" secondItem="aKW-57-2ju" secondAttribute="trailing" id="8DD-DV-J3W"/>
                             <constraint firstItem="aKW-57-2ju" firstAttribute="trailing" secondItem="HBw-bp-vYT" secondAttribute="trailing" id="DPB-tg-ztI"/>
                             <constraint firstItem="qpY-Um-IgW" firstAttribute="trailing" secondItem="aKW-57-2ju" secondAttribute="trailing" id="FOw-H2-prw"/>
-                            <constraint firstItem="HBw-bp-vYT" firstAttribute="top" secondItem="NnA-RN-1Or" secondAttribute="bottom" id="IXH-2O-png"/>
+                            <constraint firstItem="NnA-RN-1Or" firstAttribute="top" secondItem="aKW-57-2ju" secondAttribute="top" id="SWS-Rx-au2"/>
                             <constraint firstItem="HBw-bp-vYT" firstAttribute="leading" secondItem="aKW-57-2ju" secondAttribute="leading" id="Z7k-sn-Vij"/>
                             <constraint firstItem="qpY-Um-IgW" firstAttribute="top" secondItem="HBw-bp-vYT" secondAttribute="bottom" id="hMX-hv-jDl"/>
-                            <constraint firstItem="aKW-57-2ju" firstAttribute="trailing" secondItem="NnA-RN-1Or" secondAttribute="trailing" id="kts-an-SJo"/>
-                            <constraint firstItem="NnA-RN-1Or" firstAttribute="top" secondItem="aKW-57-2ju" secondAttribute="top" id="o0t-Rg-ln1"/>
+                            <constraint firstItem="HBw-bp-vYT" firstAttribute="top" secondItem="NnA-RN-1Or" secondAttribute="bottom" id="nLK-Sd-CCA"/>
+                            <constraint firstItem="NnA-RN-1Or" firstAttribute="leading" secondItem="aKW-57-2ju" secondAttribute="leading" id="oYg-UY-5NL"/>
                             <constraint firstItem="qpY-Um-IgW" firstAttribute="leading" secondItem="aKW-57-2ju" secondAttribute="leading" id="ppR-Gf-tc5"/>
                             <constraint firstItem="aKW-57-2ju" firstAttribute="bottom" secondItem="qpY-Um-IgW" secondAttribute="bottom" id="uuB-s3-xQ1"/>
-                            <constraint firstItem="NnA-RN-1Or" firstAttribute="leading" secondItem="aKW-57-2ju" secondAttribute="leading" id="yTo-Ez-Z8N"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aKW-57-2ju"/>
                     </view>
@@ -1191,6 +1194,8 @@
                         <outlet property="bottomInputConstraint" destination="uuB-s3-xQ1" id="P7c-7Q-jHO"/>
                         <outlet property="messageTable" destination="HBw-bp-vYT" id="hwR-u7-fPj"/>
                         <outlet property="tb_chatLog" destination="HBw-bp-vYT" id="To7-KT-4pr"/>
+                        <outlet property="tf_chatInput" destination="fdo-tP-O0G" id="vSq-OK-LfR"/>
+                        <outlet property="view_infoView" destination="NnA-RN-1Or" id="jbu-vm-g3b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaL-it-aAa" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -39,6 +39,8 @@
 		0BD29A2122E2C8C400ECC8D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BD29A2022E2C8C400ECC8D6 /* GoogleService-Info.plist */; };
 		0BD7235722E897F100ACAE01 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7235622E897F100ACAE01 /* PostCollectionViewCell.swift */; };
 		0BD79C4722EC4FED0094B708 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD79C4622EC4FED0094B708 /* OtherUserViewController.swift */; };
+		0BE7FCF722EFE77F00A686E7 /* BoxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7FCF622EFE77F00A686E7 /* BoxMessage.swift */; };
+		0BE7FCF922EFF4A300A686E7 /* UserBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7FCF822EFF4A300A686E7 /* UserBox.swift */; };
 		7E0F7EF8A8A468B4F927EBA5 /* Pods_MyInst.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62EDB6BE959DD31AA7ADBC1 /* Pods_MyInst.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		0BD29A2022E2C8C400ECC8D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BD7235622E897F100ACAE01 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		0BD79C4622EC4FED0094B708 /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
+		0BE7FCF622EFE77F00A686E7 /* BoxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxMessage.swift; sourceTree = "<group>"; };
+		0BE7FCF822EFF4A300A686E7 /* UserBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBox.swift; sourceTree = "<group>"; };
 		3443215A4E2C5E06C6DC2E19 /* Pods-MyInst.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInst.release.xcconfig"; path = "Target Support Files/Pods-MyInst/Pods-MyInst.release.xcconfig"; sourceTree = "<group>"; };
 		A00852879D12122DC516A938 /* Pods-MyInst.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInst.debug.xcconfig"; path = "Target Support Files/Pods-MyInst/Pods-MyInst.debug.xcconfig"; sourceTree = "<group>"; };
 		E62EDB6BE959DD31AA7ADBC1 /* Pods_MyInst.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInst.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +161,8 @@
 				0B4CD9D122E31626008F18F4 /* User.swift */,
 				0B2861D322E60447000E9A18 /* Comment.swift */,
 				0B7D0D4722EF4BD000E88B89 /* Message.swift */,
+				0BE7FCF622EFE77F00A686E7 /* BoxMessage.swift */,
+				0BE7FCF822EFF4A300A686E7 /* UserBox.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				0BD79C4722EC4FED0094B708 /* OtherUserViewController.swift in Sources */,
 				0B7D0D4622EF4A6F00E88B89 /* SenderMessageViewCell.swift in Sources */,
 				0B6C8FC422E2CDD80051B366 /* LoginViewController.swift in Sources */,
+				0BE7FCF922EFF4A300A686E7 /* UserBox.swift in Sources */,
 				0B2861D722E60A9F000E9A18 /* CacheUser.swift in Sources */,
 				0B6C8FC522E2CDD80051B366 /* UserViewController.swift in Sources */,
 				0B6C8FC222E2CDD80051B366 /* ChoosePhotoViewController.swift in Sources */,
@@ -403,6 +410,7 @@
 				0B2861D422E60447000E9A18 /* Comment.swift in Sources */,
 				0B1A603B22ED4C5D001D6F34 /* MessageViewController.swift in Sources */,
 				0B81824822E80B0E00BEBB63 /* InfoPanelView.swift in Sources */,
+				0BE7FCF722EFE77F00A686E7 /* BoxMessage.swift in Sources */,
 				0B6C8FC622E2CDD80051B366 /* FeedsViewController.swift in Sources */,
 				0B2861DE22E69853000E9A18 /* Utilites.swift in Sources */,
 				0B6C8FBE22E2CDD80051B366 /* Post.swift in Sources */,

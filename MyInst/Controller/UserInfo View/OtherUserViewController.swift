@@ -131,11 +131,19 @@ class OtherUserViewController: UIViewController, UICollectionViewDelegate, UICol
         var members: [String] = []
         members.append(Auth.auth().currentUser!.uid)
         members.append(userID!)
-        var room = Room(roomID: "", lastMessageID: "", members: members)
-        room.createRoom()
-        if let vc: MessageViewController = self.storyboard?.instantiateViewController(withIdentifier: "messageView") as? MessageViewController{
-            self.present(vc, animated: true, completion: nil)
+        
+        let boxMessage = BoxMessage(boxID: "", membersID: members)
+        boxMessage.createBox { (boxID) in
+            print("create a new box message with id: \(boxID)")
+            
+            if let vc: MessageViewController = self.storyboard?.instantiateViewController(withIdentifier: "messageView") as? MessageViewController{
+                vc.messageBoxID = boxID
+                self.present(vc, animated: true, completion: nil)
+            }
         }
+        
+        
+        
         
     }
     
