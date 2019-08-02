@@ -20,13 +20,15 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var messageBoxID: String = ""
     
-    var messages: [Message] = []
-    var members: [String:User] = [:]
+    
     var boxMessage: BoxMessage!
     var currentUser: User!
     
-    var messageRef: DatabaseReference!
-    var boxMessageRef: DatabaseReference!
+    private var messageRef: DatabaseReference!
+    private var boxMessageRef: DatabaseReference!
+    private var messages: [Message] = []
+    private var members: [String:User] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -141,7 +143,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         messageRef = Database.database().reference().child("message").child(messageBoxID)
         
         messageRef.observe(.childAdded) { (snapshot) in
-            print("message: \(snapshot)")
+            //print("message: \(snapshot)")
             let msg = Message(snapshot: snapshot)
             self.messages.insert(msg, at: 0)
             let indexPath = IndexPath(row: 0, section: 0)

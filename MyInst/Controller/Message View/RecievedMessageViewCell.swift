@@ -16,6 +16,8 @@ class RecievedMessageViewCell: UITableViewCell {
     var message: Message!
     var user: User!
     
+    private var dispatchGroup = DispatchGroup()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -40,6 +42,8 @@ class RecievedMessageViewCell: UITableViewCell {
         message = msg
         lbl_content.text = message.content
     }
+    
+    
     func setUser(usr: User) {
         user = usr
         

@@ -19,17 +19,19 @@ class OtherUserViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var postCollection: UICollectionView!
     
     @IBOutlet weak var btn_follow: UIButton!
+    
     var userID: String! = ""
     
-    let inset: CGFloat = 5
-    let minimumLineSpacing: CGFloat = 5
-    let minimumInteritemSpacing: CGFloat = 5
-    let cellsPerRow = 3
+    private let inset: CGFloat = 5
+    private let minimumLineSpacing: CGFloat = 5
+    private let minimumInteritemSpacing: CGFloat = 5
+    private let cellsPerRow = 3
     
     private var user: User! = nil
     
-    var posts: [Post] = []
+    private var posts: [Post] = []
     private var isFollowed: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

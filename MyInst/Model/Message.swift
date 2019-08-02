@@ -37,7 +37,7 @@ class Message {
         let dict = [
             "content": content,
             "from": fromID,
-            "data": "1234567"
+            "date": "1234567"
         ]
         ref.setValue(dict)
     }
