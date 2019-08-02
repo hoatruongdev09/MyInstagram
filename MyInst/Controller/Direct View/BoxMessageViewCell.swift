@@ -54,23 +54,27 @@ class BoxMessageViewCell: UITableViewCell {
     
     func UpdateUI() {
         lbl_boxName.text = ""
-        for index in 0...(boxMembers.count - 1) {
+        var index = 0
+        for member in boxMembers {
             if index == 0 {
-                lbl_boxName.text = boxMembers[index].nickName
+                lbl_boxName.text = member.nickName
             } else {
                 lbl_boxName.text?.append(contentsOf: ", ")
-                lbl_boxName.text?.append(contentsOf: boxMembers[index].nickName)
+                lbl_boxName.text?.append(contentsOf: member.nickName)
             }
             if index < 3 {
-                if let usr: User = CacheUser.checkAndGetUser(id: boxMembers[index].uid){
+                if let usr: User = CacheUser.checkAndGetUser(id: member.uid){
                     iv_boxs[index].image = usr.imagePhoto
                 } else {
-                    Utilites.downloadImage(from: URL(string: boxMembers[index].photoURL!)!, id: boxMembers[index].uid) { (image) in
+                    print("user uid: \(member.uid), photourl: \(member.photoURL)")
+                    Utilites.downloadImage(from: URL(string: member.photoURL!)!, id: member.uid) { (image) in
                         self.iv_boxs[index].image = image
                     }
                 }
             }
+            index += 1
         }
+        
         unEnableAllBoxImageView(index: (boxMembers.count))
     }
     
@@ -94,9 +98,14 @@ class BoxMessageViewCell: UITableViewCell {
     func loadLastMessage() {
         let messageRef = Database.database().reference().child("message").child(boxMessage.boxID)
         messageRef.observe(.value) { (snapshot) in
-            let snap = snapshot.children.allObjects[Int(snapshot.childrenCount - 1)] as! DataSnapshot
-            self.lastMessage = Message(snapshot: snap)
-            self.lbl_boxStatus.text = self.lastMessage.content
+            if snapshot.childrenCount != 0 {
+                let snap = snapshot.children.allObjects[Int(snapshot.childrenCount - 1)] as! DataSnapshot
+                self.lastMessage = Message(snapshot: snap)
+                self.lbl_boxStatus.text = self.lastMessage.content
+            } else {
+                self.lbl_boxStatus.text = ""
+            }
+            
         }
     }
     

@@ -110,8 +110,10 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     func loadAllUserInBoxMessage(completion: @escaping () -> Void) {
+        print("loadAllUserInBoxMessage: \(self.currentUser)")
+        let currentUserID = Auth.auth().currentUser?.uid
         for userID in self.boxMessage.membersID {
-            if userID == self.currentUser.uid {
+            if userID == currentUserID {
                 continue
             } else {
                 User.getUserInfoBy(id: userID) { (tempUser) in

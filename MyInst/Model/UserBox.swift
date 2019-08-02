@@ -21,7 +21,7 @@ class UserBox {
     }
     
     func createUserBox() {
-        let ref = userBoxRef.child(userID)
+        let ref = userBoxRef.child(userID).child(boxID)
         ref.setValue([boxID: "1"])
     }
     

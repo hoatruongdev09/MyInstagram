@@ -21,6 +21,10 @@ class PostViewCell: UITableViewCell {
     @IBOutlet weak var iv_postImage: UIImageView!
     @IBOutlet weak var tv_caption: UILabel!
     
+    @IBOutlet weak var buttonLike: UIButton!
+    
+    private var userLiked: Bool = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -61,20 +65,14 @@ class PostViewCell: UITableViewCell {
         self.tv_caption.attributedText = captionString
         self.lbl_userName.text = post.userName
         
-//        if let imageDownloadUrl = post.imageDownloadURL {
-//            Utilites.downloadImage(from: URL(string: imageDownloadUrl)!, id: post.postID!) { (image) in
-////                self.iv_postImage.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-//                DispatchQueue.main.async {
-//                    self.iv_postImage.image = image
-//                }
-//
-//            }
-//        }
-        if let image = self.post.getImage() {
+        if self.post.getImage() != nil {
             self.iv_postImage.image = self.post.getImage()
         } else {
             Utilites.downloadImage(from: URL(string: self.post.imageDownloadURL!)!, id: self.post.postID) { (image) in
-                self.iv_postImage.image = image
+                DispatchQueue.main.async {
+                    self.iv_postImage.image = image
+                }
+                
             }
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
@@ -86,6 +84,16 @@ class PostViewCell: UITableViewCell {
         } else {
             downloadUserAvatar(id: post.userUID)
         }
+        self.post.getAllLiker {
+            if self.post.checkIfUserLiked(userID: Auth.auth().currentUser!.uid) {
+                self.buttonLike.imageView?.image = UIImage(named: "like_clicked")
+                self.userLiked = true
+            } else {
+                self.buttonLike.imageView?.image = UIImage(named: "like")
+                self.userLiked = false
+            }
+        }
+        
         
     }
     func updateUI2() {
@@ -131,5 +139,16 @@ class PostViewCell: UITableViewCell {
     }
     @objc func onUserTap(sender: UITapGestureRecognizer) {
         onUserTap()
+    }
+    
+    @IBAction func buttonLikeClicked(_ sender: Any) {
+        if userLiked {
+            self.post.removeLiker(userID: Auth.auth().currentUser!.uid)
+            userLiked = false
+        } else {
+            self.post.addLiker(userID: Auth.auth().currentUser!.uid)
+            userLiked = true
+        }
+        
     }
 }

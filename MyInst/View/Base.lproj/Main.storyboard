@@ -634,11 +634,11 @@
                                 <rect key="frame" x="0.0" y="70" width="375" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="postCell" rowHeight="269" id="uzI-8K-MVC" customClass="PostViewCell" customModule="MyInst" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="269"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="postCell" rowHeight="302" id="uzI-8K-MVC" customClass="PostViewCell" customModule="MyInst" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="302"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uzI-8K-MVC" id="2lj-3v-1zi">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="269"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uzI-8K-MVC" id="2lj-3v-1zi">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="302"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fJj-aN-3Y8">
@@ -661,7 +661,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCM-4r-qM4">
-                                                    <rect key="frame" x="15" y="229" width="345" height="19"/>
+                                                    <rect key="frame" x="15" y="261" width="345" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="T2i-xx-aHT"/>
+                                                    </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -671,22 +674,36 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14h-jf-5d7">
+                                                    <rect key="frame" x="15" y="229" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="Yoh-J8-ZZC"/>
+                                                        <constraint firstAttribute="width" constant="32" id="nz3-qC-Yia"/>
+                                                    </constraints>
+                                                    <state key="normal" image="like"/>
+                                                    <connections>
+                                                        <action selector="buttonLikeClicked:" destination="uzI-8K-MVC" eventType="touchUpInside" id="s7b-JJ-cbs"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fJj-aN-3Y8" firstAttribute="leading" secondItem="2lj-3v-1zi" secondAttribute="leadingMargin" id="1nK-0h-2te"/>
                                                 <constraint firstItem="yNT-Of-DDk" firstAttribute="top" secondItem="fJj-aN-3Y8" secondAttribute="bottom" constant="8" id="4Vy-vV-eaw"/>
+                                                <constraint firstItem="aCM-4r-qM4" firstAttribute="top" secondItem="14h-jf-5d7" secondAttribute="bottom" id="9b9-hB-H25"/>
                                                 <constraint firstItem="aCM-4r-qM4" firstAttribute="leading" secondItem="2lj-3v-1zi" secondAttribute="leadingMargin" id="K4Q-1t-BvA"/>
-                                                <constraint firstItem="aCM-4r-qM4" firstAttribute="top" secondItem="yNT-Of-DDk" secondAttribute="bottom" constant="5" id="PwP-FQ-NaJ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="aCM-4r-qM4" secondAttribute="bottom" constant="10" id="TCj-Jw-QRN"/>
+                                                <constraint firstItem="14h-jf-5d7" firstAttribute="leading" secondItem="2lj-3v-1zi" secondAttribute="leadingMargin" id="RLu-Wx-SsS"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="aCM-4r-qM4" secondAttribute="bottom" constant="5" id="TCj-Jw-QRN"/>
                                                 <constraint firstItem="2cs-zV-O3n" firstAttribute="centerY" secondItem="fJj-aN-3Y8" secondAttribute="centerY" id="dLQ-uI-51G"/>
                                                 <constraint firstItem="fJj-aN-3Y8" firstAttribute="top" secondItem="2lj-3v-1zi" secondAttribute="topMargin" id="ehD-vv-GPy"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="aCM-4r-qM4" secondAttribute="trailing" id="k9n-VI-YX9"/>
                                                 <constraint firstItem="2cs-zV-O3n" firstAttribute="leading" secondItem="fJj-aN-3Y8" secondAttribute="trailing" constant="5" id="kVk-cU-GXF"/>
+                                                <constraint firstItem="14h-jf-5d7" firstAttribute="top" secondItem="yNT-Of-DDk" secondAttribute="bottom" constant="5" id="neq-aT-xiZ"/>
                                                 <constraint firstItem="yNT-Of-DDk" firstAttribute="leading" secondItem="2lj-3v-1zi" secondAttribute="leadingMargin" id="tGn-yA-Z1d"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="yNT-Of-DDk" secondAttribute="trailing" id="uE1-Si-d64"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="buttonLike" destination="14h-jf-5d7" id="dIX-fU-7yT"/>
                                             <outlet property="iv_postImage" destination="yNT-Of-DDk" id="pl5-iB-Um1"/>
                                             <outlet property="iv_userAvatar" destination="fJj-aN-3Y8" id="FdZ-NM-gFG"/>
                                             <outlet property="lbl_userName" destination="2cs-zV-O3n" id="PFQ-x4-ZeJ"/>
@@ -716,7 +733,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZA-YS-6CR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1297" y="824"/>
+            <point key="canvasLocation" x="1296.8" y="823.53823088455783"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="SIa-Be-YZL">
@@ -1492,6 +1509,7 @@
         <image name="checked" width="24" height="24"/>
         <image name="feed" width="32" height="32"/>
         <image name="left-arrow" width="32" height="32"/>
+        <image name="like" width="32" height="32"/>
         <image name="menu-button" width="32" height="32"/>
         <image name="paper-plane" width="32" height="32"/>
         <image name="photo-camera" width="32" height="32"/>
