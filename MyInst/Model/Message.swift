@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import SwiftyJSON
 class Message {
+    
     var messageID: String!
     var fromID: String!
     var date: String!

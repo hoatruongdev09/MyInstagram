@@ -5,7 +5,6 @@
 //  Created by hoatruong on 7/29/19.
 //  Copyright © 2019 hoatruong. All rights reserved.
 //
-
 import UIKit
 
 class RecievedMessageViewCell: UITableViewCell {
@@ -23,10 +22,10 @@ class RecievedMessageViewCell: UITableViewCell {
         // Initialization code
         initializeCell()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -56,5 +55,5 @@ class RecievedMessageViewCell: UITableViewCell {
             }
         }
     }
-
+    
 }

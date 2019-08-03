@@ -151,4 +151,7 @@ class PostViewCell: UITableViewCell {
         }
         
     }
+    @IBAction func buttonMessageClicked(_ sender: Any) {
+        onCommentTap()
+    }
 }

@@ -5,7 +5,6 @@
 //  Created by hoatruong on 7/29/19.
 //  Copyright © 2019 hoatruong. All rights reserved.
 //
-
 import UIKit
 
 class SenderMessageViewCell: UITableViewCell {
@@ -18,10 +17,10 @@ class SenderMessageViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     

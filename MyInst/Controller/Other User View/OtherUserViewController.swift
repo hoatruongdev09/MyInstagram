@@ -98,7 +98,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDelegate, UICol
                     self.btn_follow.setTitle("Following", for: .normal)
                 }
             })
-            print("other user nick name: \(self.btn_backButton.titleLabel?.text)")
+            print("other user nick name: \(String(describing: self.btn_backButton.titleLabel?.text))")
             
             
         }
@@ -130,23 +130,19 @@ class OtherUserViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @IBAction func buttonMessageClicked(_ sender: Any) {
-        var members: [String] = []
-        members.append(Auth.auth().currentUser!.uid)
-        members.append(userID!)
-        
-        let boxMessage = BoxMessage(boxID: "", membersID: members)
-        boxMessage.createBox { (boxID) in
+       
+        let member = [Auth.auth().currentUser!.uid, userID!]
+        print("member for create box: \(member)")
+        let box = BoxMessage(members: member)
+//        box.createBox()
+        box.createBox { (boxID) in
             print("create a new box message with id: \(boxID)")
-            
+
             if let vc: MessageViewController = self.storyboard?.instantiateViewController(withIdentifier: "messageView") as? MessageViewController{
                 vc.messageBoxID = boxID
                 self.present(vc, animated: true, completion: nil)
             }
         }
-        
-        
-        
-        
     }
     
     @IBAction func buttonBackClicked(_ sender: Any) {

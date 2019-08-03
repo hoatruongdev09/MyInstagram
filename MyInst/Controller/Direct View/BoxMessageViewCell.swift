@@ -79,19 +79,19 @@ class BoxMessageViewCell: UITableViewCell {
     }
     
     func loadAllBoxMember() {
-        let currentUserUID = Auth.auth().currentUser!.uid
-        let userRef = Database.database().reference().child("user")
-        for member in boxMessage.membersID {
-            if member != currentUserUID {
-                dispatchGroup.enter()
-                userRef.child(member).observeSingleEvent(of: .value) { (snapshot) in
-                    let user = User(snapshot: snapshot)
-                    self.boxMembers.append(user)
-                    print("box member: \(self.boxMembers.count)")
-                    self.dispatchGroup.leave()
-                }
-            }
-        }
+//        let currentUserUID = Auth.auth().currentUser!.uid
+//        let userRef = Database.database().reference().child("user")
+//        for member in boxMessage.membersID {
+//            if member != currentUserUID {
+//                dispatchGroup.enter()
+//                userRef.child(member).observeSingleEvent(of: .value) { (snapshot) in
+//                    let user = User(snapshot: snapshot)
+//                    self.boxMembers.append(user)
+//                    print("box member: \(self.boxMembers.count)")
+//                    self.dispatchGroup.leave()
+//                }
+//            }
+//        }
         
     }
     

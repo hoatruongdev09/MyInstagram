@@ -5,7 +5,6 @@
 //  Created by hoatruong on 7/28/19.
 //  Copyright © 2019 hoatruong. All rights reserved.
 //
-
 import UIKit
 import Firebase
 
@@ -31,12 +30,12 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         messageTable.transform = CGAffineTransform(scaleX: 1, y: -1)
         
-//        initializeCurrentUser()
-//        loadMessages()
+        //        initializeCurrentUser()
+        //        loadMessages()
         initializeAllBoxMessage()
         
         messageTable.delegate = self
@@ -71,7 +70,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count 
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,24 +104,24 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         boxMessageRef.observe(.value) { (snapshot) in
             self.boxMessage = BoxMessage(snapshot: snapshot)
-            print("box member: \(self.boxMessage.membersID)")
+            print("box member: \(self.boxMessage.members)")
             completion()
         }
     }
     func loadAllUserInBoxMessage(completion: @escaping () -> Void) {
         print("loadAllUserInBoxMessage: \(self.currentUser)")
         let currentUserID = Auth.auth().currentUser?.uid
-        for userID in self.boxMessage.membersID {
+        for userID in self.boxMessage.members {
             if userID == currentUserID {
                 continue
             } else {
                 User.getUserInfoBy(id: userID) { (tempUser) in
                     self.members[tempUser.uid] = tempUser
-                     completion()
+                    completion()
                 }
             }
         }
-       
+        
     }
     
     func initializeAllBoxMessage() {
