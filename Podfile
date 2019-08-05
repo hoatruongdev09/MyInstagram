@@ -20,4 +20,6 @@ pod 'FacebookShare'
 
 pod 'SwiftyJSON'
 
+pod 'RadioButton', '~> 1.0'
+
 end

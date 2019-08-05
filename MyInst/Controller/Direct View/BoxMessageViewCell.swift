@@ -8,8 +8,11 @@
 
 import UIKit
 import Firebase
+import SwiftyJSON
 
-class BoxMessageViewCell: UITableViewCell {
+class BoxMessageViewCell: UITableViewCell, DirectCellProtocol {
+   
+    
     
     @IBOutlet var iv_boxs: [UIImageView]!
     @IBOutlet weak var lbl_boxName: UILabel!
@@ -20,7 +23,6 @@ class BoxMessageViewCell: UITableViewCell {
     private var boxMembers: [User] = []
     private var lastMessage: Message!
     
-    private var dispatchGroup = DispatchGroup()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,12 +35,18 @@ class BoxMessageViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    func setData(data: Any) {
+        if let boxMessageData : BoxMessage = data as? BoxMessage {
+            setBoxMessage(boxMessage: boxMessageData)
+        }
+    }
     
     func commonInit() {
         for iv_box in iv_boxs {
             iv_box.layer.masksToBounds = false
             iv_box.layer.cornerRadius = iv_box.frame.height/2
             iv_box.clipsToBounds = true
+            iv_box.isHidden = true;
         }
     }
     
@@ -46,52 +54,42 @@ class BoxMessageViewCell: UITableViewCell {
         self.boxMessage = boxMessage
         loadAllBoxMember()
         loadLastMessage()
-        dispatchGroup.notify(queue: .main) {
-            print("box member: \(self.boxMembers.count)")
-            self.UpdateUI()
-        }
     }
-    
-    func UpdateUI() {
-        lbl_boxName.text = ""
-        var index = 0
-        for member in boxMembers {
-            if index == 0 {
-                lbl_boxName.text = member.nickName
-            } else {
-                lbl_boxName.text?.append(contentsOf: ", ")
-                lbl_boxName.text?.append(contentsOf: member.nickName)
-            }
-            if index < 3 {
-                if let usr: User = CacheUser.checkAndGetUser(id: member.uid){
-                    iv_boxs[index].image = usr.imagePhoto
-                } else {
-                    print("user uid: \(member.uid), photourl: \(member.photoURL)")
-                    Utilites.downloadImage(from: URL(string: member.photoURL!)!, id: member.uid) { (image) in
-                        self.iv_boxs[index].image = image
-                    }
-                }
-            }
-            index += 1
-        }
-        
-        unEnableAllBoxImageView(index: (boxMembers.count))
+    func getBoxMessage() -> BoxMessage {
+        return boxMessage
     }
     
     func loadAllBoxMember() {
-//        let currentUserUID = Auth.auth().currentUser!.uid
-//        let userRef = Database.database().reference().child("user")
-//        for member in boxMessage.membersID {
-//            if member != currentUserUID {
-//                dispatchGroup.enter()
-//                userRef.child(member).observeSingleEvent(of: .value) { (snapshot) in
-//                    let user = User(snapshot: snapshot)
-//                    self.boxMembers.append(user)
-//                    print("box member: \(self.boxMembers.count)")
-//                    self.dispatchGroup.leave()
-//                }
-//            }
-//        }
+        let boxRef = Database.database().reference().child("box-message").child(boxMessage.boxID)
+        var index = 0
+        boxRef.observe(.childAdded) { (snapshot) in
+            let userRef = Database.database().reference().child("user").child(snapshot.key)
+            if snapshot.key != Auth.auth().currentUser!.uid {
+                userRef.observeSingleEvent(of: .value, with: { (data) in
+//                    let json = JSON(data.value ?? "")
+//                    let photoURL = json["photoURL"].stringValue
+//                    let userName = json["nickName"].stringValue
+                    let user = User(snapshot: data)
+                    self.boxMembers.append(user)
+                    if index == 0 {
+                        self.lbl_boxName.text = user.nickName
+                    } else {
+                        self.lbl_boxName.text?.append(contentsOf: ", \(user.nickName)")
+                    }
+                    if index < 3 {
+                        Utilites.downloadImage(from: URL(string: user.photoURL)!, id: user.uid, completion: { (image) in
+                            DispatchQueue.main.async {
+                                self.iv_boxs[index].image = image
+                                self.iv_boxs[index].isHidden = false
+                            }
+                            
+                        })
+                    }
+                    index += 1
+                })
+            }
+           
+        }
         
     }
     
