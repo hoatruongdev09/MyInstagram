@@ -39,6 +39,7 @@
 		0B7D0D4822EF4BD000E88B89 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7D0D4722EF4BD000E88B89 /* Message.swift */; };
 		0B81824622E80AF400BEBB63 /* InfoPanelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B81824522E80AF400BEBB63 /* InfoPanelView.xib */; };
 		0B81824822E80B0E00BEBB63 /* InfoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B81824722E80B0E00BEBB63 /* InfoPanelView.swift */; };
+		0BCA2D0222FA7E3E00515FD0 /* TagUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA2D0122FA7E3E00515FD0 /* TagUserCollectionViewCell.swift */; };
 		0BD29A0F22E2C86F00ECC8D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD29A0E22E2C86F00ECC8D6 /* AppDelegate.swift */; };
 		0BD29A1622E2C87000ECC8D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BD29A1522E2C87000ECC8D6 /* Assets.xcassets */; };
 		0BD29A1922E2C87000ECC8D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BD29A1722E2C87000ECC8D6 /* LaunchScreen.storyboard */; };
@@ -81,6 +82,7 @@
 		0B7D0D4722EF4BD000E88B89 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0B81824522E80AF400BEBB63 /* InfoPanelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPanelView.xib; sourceTree = "<group>"; };
 		0B81824722E80B0E00BEBB63 /* InfoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPanelView.swift; sourceTree = "<group>"; };
+		0BCA2D0122FA7E3E00515FD0 /* TagUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagUserCollectionViewCell.swift; sourceTree = "<group>"; };
 		0BD29A0B22E2C86F00ECC8D6 /* MyInst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInst.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BD29A0E22E2C86F00ECC8D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BD29A1522E2C87000ECC8D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				0B1EADF922F7C8B300BB7AF7 /* CompoundMessageViewController.swift */,
 				0B1EADFB22F7CAB300BB7AF7 /* NewMessageViewCell.swift */,
+				0BCA2D0122FA7E3E00515FD0 /* TagUserCollectionViewCell.swift */,
 			);
 			path = "Compound Message View";
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				0B2861D722E60A9F000E9A18 /* CacheUser.swift in Sources */,
 				0B6C8FC522E2CDD80051B366 /* UserViewController.swift in Sources */,
 				0B6C8FC222E2CDD80051B366 /* ChoosePhotoViewController.swift in Sources */,
+				0BCA2D0222FA7E3E00515FD0 /* TagUserCollectionViewCell.swift in Sources */,
 				0B2987ED22F67D36001371C7 /* SuggestionMessageViewCell.swift in Sources */,
 				0B2861DC22E61329000E9A18 /* CommentCell.swift in Sources */,
 				0B1A603622ED46D7001D6F34 /* MessengerInfoView.swift in Sources */,

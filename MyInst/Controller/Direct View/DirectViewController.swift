@@ -12,6 +12,7 @@ import Firebase
 class DirectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var boxChatTable: UITableView!
+    @IBOutlet weak var tf_search: UITextField!
     
     private var userBoxRef: DatabaseReference!
     private var currentUserBox = Database.database().reference().child("user")
@@ -75,6 +76,9 @@ class DirectViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
     }
     
     private func initilizeBoxChatTable() {

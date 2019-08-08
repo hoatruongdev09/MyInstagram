@@ -46,6 +46,7 @@ class MessengerInfoView: UIView {
             imageView.layer.borderColor = UIColor.black.cgColor
             imageView.layer.cornerRadius = imageView.frame.height/2
             imageView.clipsToBounds = true
+            imageView.isHidden = true
         }
     
     }
@@ -58,20 +59,19 @@ class MessengerInfoView: UIView {
                 if index == 0 {
                     lbl_userName.text = user.value.nickName
                 } else {
-                    lbl_userName.text?.append(contentsOf: ", \(user.value.nickName)")
+                    lbl_userName.text?.append(contentsOf: ", \(user.value.nickName!)")
                 }
                 if let tmp: User = CacheUser.checkAndGetUser(id: user.key) {
                     self.iv_allUserAvatar![index].image = tmp.imagePhoto
+                    self.iv_allUserAvatar![index].isHidden = false
                 } else {
                     Utilites.downloadImage(from: URL(string: user.value.photoURL!)!, id: user.key) { (image) in
                         self.iv_allUserAvatar![index].image = image
+                        self.iv_allUserAvatar![index].isHidden = false
                     }
                 }
                 index += 1
             }
-        }
-        for index in (self.members.count)...(self.iv_allUserAvatar.count - 1) {
-            self.iv_allUserAvatar[index].isHidden = true
         }
     }
     

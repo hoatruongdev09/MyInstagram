@@ -61,7 +61,7 @@ class BoxMessageViewCell: UITableViewCell, DirectCellProtocol {
     
     func loadAllBoxMember() {
         let boxRef = Database.database().reference().child("box-message").child(boxMessage.boxID)
-        var index = 0
+        var index = 3
         boxRef.observe(.childAdded) { (snapshot) in
             let userRef = Database.database().reference().child("user").child(snapshot.key)
             if snapshot.key != Auth.auth().currentUser!.uid {
@@ -71,12 +71,12 @@ class BoxMessageViewCell: UITableViewCell, DirectCellProtocol {
 //                    let userName = json["nickName"].stringValue
                     let user = User(snapshot: data)
                     self.boxMembers.append(user)
-                    if index == 0 {
-                        self.lbl_boxName.text = user.nickName
+                    if index == 3 {
+                        self.lbl_boxName.text = user.nickName!
                     } else {
-                        self.lbl_boxName.text?.append(contentsOf: ", \(user.nickName)")
+                        self.lbl_boxName.text?.append(contentsOf: ", \(user.nickName!)")
                     }
-                    if index < 3 {
+                    if index >= 0 {
                         Utilites.downloadImage(from: URL(string: user.photoURL)!, id: user.uid, completion: { (image) in
                             DispatchQueue.main.async {
                                 self.iv_boxs[index].image = image
@@ -85,7 +85,7 @@ class BoxMessageViewCell: UITableViewCell, DirectCellProtocol {
                             
                         })
                     }
-                    index += 1
+                    index -= 1
                 })
             }
            

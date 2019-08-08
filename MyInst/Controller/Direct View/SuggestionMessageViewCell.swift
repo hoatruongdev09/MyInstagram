@@ -56,6 +56,5 @@ class SuggestionMessageViewCell: UITableViewCell, DirectCellProtocol {
         iv_userAvatar.layer.masksToBounds = false
         iv_userAvatar.layer.cornerRadius = iv_userAvatar.frame.height/2
         iv_userAvatar.clipsToBounds = true
-        iv_userAvatar.isHidden = true;
     }
 }
